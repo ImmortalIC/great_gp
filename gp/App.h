@@ -1,6 +1,7 @@
 #pragma once
 #include "Renderer.h"
 #include "ResourceManager.h"
+#include "GameBoard.h"
 #define MAX_LOADSTRING 100
 
 class CApp
@@ -25,6 +26,7 @@ private:
 	TCHAR szWindowClass[MAX_LOADSTRING];			// имя класса главного окна
 	ATOM MyRegisterClass(HINSTANCE hInstance);
 	LRESULT ProcessMessages(HWND, UINT, WPARAM, LPARAM);
+	std::shared_ptr<CGameBoard> board;
 
 };
 

@@ -19,7 +19,7 @@ CResourceManager::~CResourceManager()
 	resources.clear();
 }
 
-UINT CResourceManager::addResource(UINT type, LPCTSTR path)
+UINT CResourceManager::addResource(UINT type, const LPCTSTR path)
 {
 	IResource* new_res;
 	switch (type)

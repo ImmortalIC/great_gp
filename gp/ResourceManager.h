@@ -9,7 +9,7 @@ public:
 	CResourceManager();
 	~CResourceManager();
 	IResource_ptr operator[](UINT index);
-	UINT addResource(UINT type, LPCTSTR path);
+	UINT addResource(UINT type, const LPCTSTR path);
 	void CleanOld();
 
 private:
