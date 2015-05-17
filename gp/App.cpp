@@ -57,7 +57,8 @@ BOOL CApp::InitInstance(HINSTANCE hInstance, int nCmdShow)
 	}
 	main_renderer.InitRenderer(hWnd,WIDTH, HEIGHT);
 	UINT res;
-	res=main_r_manager.addResource(RES_GDI_BITMAP, L"test_sprite1.bmp");
+	TCHAR* file = _T("test_sprite1.bmp");
+	res=main_r_manager.addResource(RES_GDI_BITMAP, file);
 	main_renderer.AddToQueue(500, 500, res);
 	main_renderer.AddToQueue(1500, 500, res);
 	main_renderer.AddToQueue(500, 1000, res);

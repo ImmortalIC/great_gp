@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "base_interfaces.h"
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 
@@ -12,7 +13,7 @@ struct render_object
 };
 
 
-class CRenderer
+class CRenderer: public IRenderer
 {
 public:
 	CRenderer();

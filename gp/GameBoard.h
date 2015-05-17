@@ -4,7 +4,7 @@ class CGameBoard
 public:
 	CGameBoard();
 	virtual ~CGameBoard();
-	virtual  void CalcIteration();
+	virtual  void CalcIteration(){};
 private:
 	
 

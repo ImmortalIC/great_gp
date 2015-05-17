@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include <map>
 #include <fstream>
-#include "App.h"
+
 #include "TacticMap.h"
 
 
@@ -9,7 +9,7 @@ CTacticMap::CTacticMap()
 {
 }
 
-BYTE CTacticMap::InitMap(LPCSTR map_file)
+BYTE CTacticMap::InitMap(LPCSTR map_file,IResourceManager* manager)
 {
 	std::ifstream file(map_file);
 	char* buffer;
@@ -23,15 +23,15 @@ BYTE CTacticMap::InitMap(LPCSTR map_file)
 	file.seekg(0, file.beg);
 	buffer = new char[4];
 	ZeroMemory(buffer, sizeof(char) * 4);
-	file.get(buffer, 3);
-	if (buffer != TMAP_FILE_SIGNATURE)
+	file.get(buffer, 4);
+	if (strcmp(buffer,TMAP_FILE_SIGNATURE))
 	{
 		return TMAP_ERROR_FILE;
 	}
 	delete[] buffer;
 	buffer = new char[3];
 	ZeroMemory(buffer, sizeof(char) * 3);
-	file.get(buffer, 2);
+	file.get(buffer, 3);
 	int_buffer = (UINT*)buffer;
 	size_x = *int_buffer;
 	ZeroMemory(buffer, sizeof(char) * 3);
@@ -45,12 +45,12 @@ BYTE CTacticMap::InitMap(LPCSTR map_file)
 	ZeroMemory(buffer, sizeof(char) * (*int_buffer + 1));
 	file.get(buffer, *int_buffer);
 	delete[] int_buffer;
-	char* str_chunk;
+	char* str_chunk,*next_token;
 	std::map<char, UINT> tiles;
 	do{
-		str_chunk = strtok(buffer, "|");
+		str_chunk = strtok_s(buffer, "|",&next_token);
 
-		tiles.insert(CreateTile(str_chunk));
+		tiles.insert(CreateTile(str_chunk,manager));
 	} while (str_chunk!=NULL);
 	delete[] buffer;
 	buffer = new char;
@@ -74,14 +74,14 @@ BYTE CTacticMap::InitMap(LPCSTR map_file)
 	return TMAP_OK;
 }
 
-std::pair<char, UINT> CTacticMap::CreateTile(std::string serialized_tile)
+std::pair<char, UINT> CTacticMap::CreateTile(std::string serialized_tile,IResourceManager* manager)
 {
 	char index;
 	UINT res_index;
 	if (serialized_tile == "")
 		return std::pair<char,UINT>(NULL,NULL);
 	index = serialized_tile[0];
-	res_index=CApp::getApp()->main_r_manager.addResource(RES_GDI_BITMAP, (LPCTSTR)serialized_tile.substr(1).c_str());
+	res_index=manager->addResource(RES_GDI_BITMAP, (LPCTSTR)serialized_tile.substr(1).c_str());
 	return std::pair<char, UINT>(index, res_index);
 }
 CTacticMap::~CTacticMap()
@@ -94,13 +94,13 @@ CTacticMap::~CTacticMap()
 	}
 }
 
-void CTacticMap::Render()
+void CTacticMap::Render(IRenderer* renderer)
 {
 	for (int i = 0; i < size_x; i++)
 	{
 		for (int j = 0; j < size_y; j++)
 		{
-			CApp::getApp()->main_renderer.AddToQueue(i*TMAP_TILE_SIZE, j*TMAP_TILE_SIZE, tiles[i][j]);
+			renderer->AddToQueue(i*TMAP_TILE_SIZE, j*TMAP_TILE_SIZE, tiles[i][j]);
 		}
 	}
 }

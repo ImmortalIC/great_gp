@@ -11,23 +11,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{EE8DE31B-819E-490E-B734-B6A036844BAE}</ProjectGuid>
-    <Keyword>Win32Proj</Keyword>
-    <RootNamespace>gp</RootNamespace>
+    <ProjectGuid>{E0BBB9A0-B6F4-4710-ADE2-8D876F3E8BF4}</ProjectGuid>
+    <RootNamespace>test_project</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -40,78 +39,60 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>D:\gmock-1.7.0\gmock-1.7.0\include;D:\Documents\Ебашь Иммо Ебашь\gp\gp;D:\gtest-1.7.0\gtest-1.7.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\gmock-1.7.0\gmock-1.7.0\msvc\2010\Debug;D:\gtest-1.7.0\gtest-1.7.0\msvc\gtest\Debug;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>D:\Documents\Ебашь Иммо Ебашь\gp\gp;$(ExecutablePath)</ExecutablePath>
+    <SourcePath>D:\Documents\Ебашь Иммо Ебашь\gp\gp;$(SourcePath)</SourcePath>
+    <TargetName>test</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>gtest.lib;gtest_main.lib;gmock.lib;gmock_main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <ClCompile Include="..\gp\App.cpp" />
+    <ClCompile Include="..\gp\GameBoard.cpp" />
+    <ClCompile Include="..\gp\GDIBitmapResource.cpp" />
+    <ClCompile Include="..\gp\Renderer.cpp" />
+    <ClCompile Include="..\gp\ResourceManager.cpp" />
+    <ClCompile Include="..\gp\TacticBoard.cpp" />
+    <ClCompile Include="..\gp\TacticMap.cpp" />
+    <ClCompile Include="TacticalMap_test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="all_resources.h" />
-    <ClInclude Include="App.h" />
-    <ClInclude Include="base_interfaces.h" />
-    <ClInclude Include="GameBoard.h" />
-    <ClInclude Include="GDIBitmapResource.h" />
-    <ClInclude Include="gp.h" />
-    <ClInclude Include="iresource.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TacticBoard.h" />
-    <ClInclude Include="TacticMap.h" />
-    <ClInclude Include="targetver.h" />
+    <ProjectReference Include="..\gp\gp.vcxproj">
+      <Project>{ee8de31b-819e-490e-b734-b6a036844bae}</Project>
+      <Private>true</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="App.cpp" />
-    <ClCompile Include="GameBoard.cpp" />
-    <ClCompile Include="GDIBitmapResource.cpp" />
-    <ClCompile Include="gp.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="TacticBoard.cpp" />
-    <ClCompile Include="TacticMap.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="gp.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="gp.ico" />
-    <Image Include="small.ico" />
+    <ClInclude Include="..\gp\GDIBitmapResource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
