@@ -1,6 +1,8 @@
 #pragma once
+#include <vector>
 #include "base_interfaces.h"
 #include "stdafx.h"
+
 #define TMAP_OK 0
 #define TMAP_ERROR_FILE 1
 #define TMAP_ERROR_RESOURCE 2
@@ -16,9 +18,9 @@ public:
 	void Render(IRenderer* renderer);
 	BYTE InitMap(LPCSTR map_file,IResourceManager* manager);
 private:
-	BYTE** tiles;
+	std::vector<std::vector<BYTE>> tiles;
 	UINT size_x, size_y;
-	std::pair<char,UINT> CreateTile(std::string serialized_tile,IResourceManager* manager);
+	std::pair<char,UINT> CreateTile(char* serialized_tile,IResourceManager* manager);
 
 };
 

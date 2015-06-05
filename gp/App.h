@@ -26,7 +26,7 @@ private:
 	TCHAR szWindowClass[MAX_LOADSTRING];			// имя класса главного окна
 	ATOM MyRegisterClass(HINSTANCE hInstance);
 	LRESULT ProcessMessages(HWND, UINT, WPARAM, LPARAM);
-	std::shared_ptr<CGameBoard> board;
+	std::unique_ptr<CGameBoard> board;
 
 };
 

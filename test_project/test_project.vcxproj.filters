@@ -13,35 +13,59 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="LinkedFiles">
+      <UniqueIdentifier>{a0ddef05-de78-4bcb-ae33-234e8f11ed2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TacticalMap_test.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="..\gp\App.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\gp\GameBoard.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\gp\GDIBitmapResource.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\gp\Renderer.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="..\gp\ResourceManager.cpp">
-      <Filter>Файлы исходного кода</Filter>
+    <ClCompile Include="..\gp\TacticMap.cpp">
+      <Filter>LinkedFiles</Filter>
     </ClCompile>
     <ClCompile Include="..\gp\TacticBoard.cpp">
+      <Filter>LinkedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gp\ResourceManager.cpp">
+      <Filter>LinkedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gp\Renderer.cpp">
+      <Filter>LinkedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gp\GDIBitmapResource.cpp">
+      <Filter>LinkedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gp\GameBoard.cpp">
+      <Filter>LinkedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gp\App.cpp">
+      <Filter>LinkedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gp\Unit.cpp">
+      <Filter>LinkedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gp\UnitFactory.cpp">
+      <Filter>LinkedFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitFactory_test.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="..\gp\TacticMap.cpp">
+    <ClCompile Include="Unit_test.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="TacticBoard_test.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\gp\GDIBitmapResource.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderMock.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManagerMock.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>

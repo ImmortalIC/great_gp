@@ -4,7 +4,8 @@ class CGameBoard
 public:
 	CGameBoard();
 	virtual ~CGameBoard();
-	virtual  void CalcIteration(){};
+	virtual bool InitTestEnv()=0;
+	virtual  void CalcIteration()=0;
 private:
 	
 

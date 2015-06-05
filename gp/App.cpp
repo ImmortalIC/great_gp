@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "App.h"
+#include "TacticBoard.h"
 #define WIDTH 1920
 #define HEIGHT 1080
 
@@ -56,12 +57,12 @@ BOOL CApp::InitInstance(HINSTANCE hInstance, int nCmdShow)
 		return FALSE;
 	}
 	main_renderer.InitRenderer(hWnd,WIDTH, HEIGHT);
-	UINT res;
-	TCHAR* file = _T("test_sprite1.bmp");
-	res=main_r_manager.addResource(RES_GDI_BITMAP, file);
-	main_renderer.AddToQueue(500, 500, res);
-	main_renderer.AddToQueue(1500, 500, res);
-	main_renderer.AddToQueue(500, 1000, res);
+	this->board = std::unique_ptr<CGameBoard>(new CTacticBoard(&main_renderer,&main_r_manager));
+	if (!board->InitTestEnv())
+	{
+		return FALSE;
+	}
+
 	ShowWindow(hWnd, this->nCmdShow);
 	UpdateWindow(hWnd);
 
@@ -115,6 +116,7 @@ int CApp::StartCycle()
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
 		
+		board->CalcIteration();
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		

@@ -5,10 +5,15 @@ class CTacticBoard :
 	public CGameBoard
 {
 public:
-	CTacticBoard();
+	CTacticBoard(IRenderer* render,IResourceManager* man);
 	~CTacticBoard();
-	void CalcIteration(){};
+	bool InitTestEnv();
+	void CalcIteration();
 private:
 	CTacticMap map;
+	std::vector<std::unique_ptr<ITacticObject>> objects;
+	IRenderer* renderer;
+	IResourceManager* r_manager;
+	void Render();
 };
 

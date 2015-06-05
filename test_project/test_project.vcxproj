@@ -79,7 +79,12 @@
     <ClCompile Include="..\gp\ResourceManager.cpp" />
     <ClCompile Include="..\gp\TacticBoard.cpp" />
     <ClCompile Include="..\gp\TacticMap.cpp" />
+    <ClCompile Include="..\gp\Unit.cpp" />
+    <ClCompile Include="..\gp\UnitFactory.cpp" />
     <ClCompile Include="TacticalMap_test.cpp" />
+    <ClCompile Include="TacticBoard_test.cpp" />
+    <ClCompile Include="UnitFactory_test.cpp" />
+    <ClCompile Include="Unit_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\gp\gp.vcxproj">
@@ -93,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\gp\GDIBitmapResource.h" />
+    <ClInclude Include="RenderMock.h" />
+    <ClInclude Include="ResourceManagerMock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -24,3 +24,23 @@ public:
 	virtual void CleanOld()=0;
 
 };
+
+
+class ITacticObject
+{
+public:
+	ITacticObject(){};
+	virtual ~ITacticObject(){};
+	virtual void Render(IRenderer* renderer)=0;
+	virtual POINT getPosition()=0;
+	virtual bool operator == (const ITacticObject* a)
+	{
+		return (this->_x == a->_x && this->_y == a->_y && this->_resource == a->_resource);
+	}
+protected:
+	UINT _x;
+	UINT _y;
+	BYTE _resource;
+
+
+};
