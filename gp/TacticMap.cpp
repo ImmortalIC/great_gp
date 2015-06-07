@@ -38,28 +38,39 @@ BYTE CTacticMap::InitMap(LPCSTR map_file,IResourceManager* manager)
 	file.read(buffer, 4);
 	int_buffer = (UINT*)buffer;
 	size_y = *int_buffer;
-	ZeroMemory(buffer, sizeof(char) * 5);
-	file.read(buffer, 4);
-	int_buffer = (UINT*)buffer;
-	buffer = new char[*int_buffer + 1];
-	ZeroMemory(buffer, sizeof(char) * (*int_buffer + 1));
-	file.read(buffer, *int_buffer);
-	delete[] int_buffer;
-	char* str_chunk=NULL,*next_token=NULL;
+	delete[] buffer;
+	buffer = new char;
+	ZeroMemory(buffer, sizeof(char));
+	file.read(buffer, 1);
+	BYTE num_tiles = buffer[0];
+	delete[] buffer;
+
+	int_buffer = new UINT;
 	std::map<char, UINT> tiles;
 	std::pair<char, UINT> pair;
-	str_chunk = strtok_s(buffer, "|", &buffer);
-	do{
+
+	//tiles.insert(std::pair<char, UINT>('F', 4));
+
+	int i = 0, j = 0;
+	for( i = 0; i < num_tiles; i++)
+	{
+		ZeroMemory(int_buffer, sizeof(UINT));
+		file.read((char*)int_buffer, sizeof(UINT));
+		buffer = new char[*int_buffer+sizeof(wchar_t)];
+		ZeroMemory(buffer, sizeof(char)*(*int_buffer + sizeof(wchar_t)));
 		
-		pair = CreateTile(str_chunk, manager);
+		file.read(buffer, *int_buffer);
+		buffer[*int_buffer] = 0;
+		pair = CreateTile(buffer, manager);
+	
 		if (pair.second == NULL)
 			return TMAP_ERROR_RESOURCE;
 		tiles.insert(pair);
-		str_chunk = strtok_s(buffer, "|", &buffer);
-	} while (str_chunk!=NULL);
-	
+		delete[] buffer;
+	}
+
 	buffer = new char;
-	int i = 0, j = 0;
+	i = 0;
 	this->tiles.push_back(std::vector<BYTE>());
 	std::map<char, UINT>::iterator it;
 	file.read(buffer, 1);

@@ -5,6 +5,7 @@
 
 CResourceManager::CResourceManager()
 {
+	resources.push_back(std::pair<IResource_ptr, ULONG>(nullptr, 0));
 }
 
 

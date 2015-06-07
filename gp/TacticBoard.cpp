@@ -25,9 +25,9 @@ bool CTacticBoard::InitTestEnv()
 	if ( res!= TMAP_OK)
 		return false;
 	UINT unit1_res, unit2_res;
-	std::string unit1 = "test_unit1.bmp", unit2 = "test_unit2.bmp";
-	unit1_res = r_manager->addResource(RES_GDI_BITMAP, (LPCTSTR)unit1.c_str());
-	unit2_res = r_manager->addResource(RES_GDI_BITMAP, (LPCTSTR)unit2.c_str());
+	LPCTSTR unit1 = L"test_unit1.bmp", unit2 = L"test_unit2.bmp";
+	unit1_res = r_manager->addResource(RES_GDI_BITMAP, unit1);
+	unit2_res = r_manager->addResource(RES_GDI_BITMAP, unit2);
 	if (unit1_res == NULL || unit2_res == NULL)
 	{
 		return false;
@@ -37,6 +37,7 @@ bool CTacticBoard::InitTestEnv()
 	objects.push_back(TacticObj_ptr(fact.CreateUnit(unit1_res, 100, 100)));
 	objects.push_back(TacticObj_ptr(fact.CreateUnit(unit2_res, 600, 200)));
 	objects.push_back(TacticObj_ptr(fact.CreateUnit(unit1_res, 600, 800)));
+	this->CalcIteration();
 	return true;
 }
 
